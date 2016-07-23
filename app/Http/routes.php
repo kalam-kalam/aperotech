@@ -10,7 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', 'FrontController@index');
+Route::get('apero/{id}', 'FrontController@showApero');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::resource('search', 'SearchController');
+
+Route::any('login', 'LoginController@login');
+Route::get('login', 'LoginController@logout');
+
+Route::group(['prefix' => 'front'], function() {
+
+    Route::resource('apero', 'AperoFrontController'); //routes REST directement créées
+
+
+
 });
