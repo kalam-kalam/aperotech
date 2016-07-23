@@ -28,7 +28,7 @@ $factory->define(App\Apero::class, function (Faker\Generator $faker) {
         'abstract' => $faker->text,
         'status' => $faker->randomElement(array('published', 'unpublished')),
         'published_on' => $faker->dateTime->format('d,M,Y'),
-        'date' => $faker->date($format = 'd-m-Y', $max = 'now'),
+
     ];
 });
 
