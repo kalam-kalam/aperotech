@@ -10,13 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', 'FrontController@index');
+Route::get('/', 'FrontController@index', 'FrontController@showTag');
 Route::get('apero/{id}', 'FrontController@showApero');
+
 
 Route::resource('search', 'SearchController');
 
 Route::any('login', 'LoginController@login');
-Route::get('login', 'LoginController@logout');
+Route::get('logout', 'LoginController@logout');
 
 Route::group(['prefix' => 'front'], function() {
 

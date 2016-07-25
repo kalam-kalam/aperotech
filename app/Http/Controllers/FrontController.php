@@ -3,22 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Apero;
-use Illuminate\Http\Request;
+use App\Category;
+use App\Tag;
 
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class FrontController extends Controller
 {
     public function index()
     {
-        // seulement les 3 prochains aperos
+        $today = Carbon::now()->toDateString();
 
-        //$aperos = Apero::whereDate('created_at', '>=',date('Y-m-d'));
+        $aperos = Apero::where('date', '>=', $today)
+            ->orderBy('date')
+            ->paginate(3);
 
-        $aperos = Apero::all();
+        $categories = Category::all();
 
-        return view('front.index', compact('aperos'));
+        return view('front.index', compact('aperos', 'today', 'categories'));
     }
+    
 
     public function showApero($id)
     {
@@ -29,5 +36,6 @@ class FrontController extends Controller
 
 
 
+    
 
 }
