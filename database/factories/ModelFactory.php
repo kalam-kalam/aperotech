@@ -24,6 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Apero::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->text,
+        'date' =>$faker->dateTimeBetween($startDate= 'now',$endDate='+1 years'),
         'content' => $faker->text,
         'abstract' => $faker->text,
         'status' => $faker->randomElement(array('published', 'unpublished')),
