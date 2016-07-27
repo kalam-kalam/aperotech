@@ -21,8 +21,15 @@ Route::get('logout', 'LoginController@logout');
 
 Route::group(['prefix' => 'front'], function() {
 
-    Route::resource('apero', 'AperoFrontController'); //routes REST directement créées
+    Route::resource('apero', 'AperoFrontController');
+});
 
+Route::group(['prefix' => 'admin', 'middleware' =>'auth'], function() {
+    Route::resource('apero', 'AperoAdminController');
+    
+});
 
+Route::group(['prefix' => 'admin'],  function() {
+    Route::resource('publishstatus', 'PublishController');
 
 });
