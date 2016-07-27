@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Apero;
+use App\Category;
+use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class PublishController extends Controller
+class AperoAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +19,10 @@ class PublishController extends Controller
      */
     public function index()
     {
-        //
+        $aperos = Apero::paginate(5);
+        $users = User::all();
+
+        return view('admin.index', compact('aperos', 'users'));
     }
 
     /**
@@ -26,7 +32,9 @@ class PublishController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::lists('name','id');
+        $tags = Tag::lists('name','id');
+        return view('admin.create', compact('categories', 'tags'));
     }
 
     /**
@@ -37,7 +45,18 @@ class PublishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $apero= Apero::create($request->all());
+
+        if (!empty($request->input('tags')))
+        {
+            $apero->tags()->attach($request->input('tags'));
+        }
+        $apero->tags()->attach($request-> input('tags'));
+        
+
+        return back()->with(['message'=>'votre post a bien été ajouté']);
+
     }
 
     /**
@@ -59,7 +78,17 @@ class PublishController extends Controller
      */
     public function edit($id)
     {
-        //
+        $published=' ';
+        $unpublished=' ';
+
+        $apero = Apero::find($id);
+
+        ($apero->status == 'published')? $published ='checked': $unpublished ='checked';
+
+        $categories = Category::lists('name', 'id');
+        $tags = Tag::lists('name', 'id');
+
+        return view ('admin.edit', compact('apero', 'published', 'unpublished','categories', 'tags'));
     }
 
     /**
@@ -71,17 +100,19 @@ class PublishController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $apero = Apero::find($id);
 
-        if($apero->status == 'published' ) {
-            $apero->update(['status' => 'unpublished']);
-        }
-        else {
-            $apero->update(['status' => 'published']);
-        }
+        $apero->update($request->all());
 
-        return back();
+        if(!empty($request->tags))
+        {
+            $apero->tags()->detach();
+            $apero->tags()->attach($request->tags);
+        }
+        else
+        {
+            $apero->tags()->detach();
+        }
 
 
     }
@@ -94,6 +125,12 @@ class PublishController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Apero::find($id);
+
+        Apero::destroy($id);
+
+        return back()->with(['message'=>'apero supprimé']);
     }
+
+
 }
