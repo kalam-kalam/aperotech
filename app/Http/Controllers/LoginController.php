@@ -23,16 +23,13 @@ class LoginController extends Controller
 
             $credentials = $request->only('username', 'password');
 
-
-
             if (Auth::attempt($credentials))
             {
-
-                return redirect('admin/index')->with( ['message'=>'success']);
+                return redirect('admin/apero');
             }else{
 
-                return back()->withInput($request->only('username'))
-                    ->with(['message'=> 'identifiant ou mot de passe erroné']);
+                return back();
+
             }
         }
         return view('auth.login');

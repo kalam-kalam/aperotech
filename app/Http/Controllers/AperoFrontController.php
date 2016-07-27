@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Apero;
+use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -26,7 +28,10 @@ class AperoFrontController extends Controller
      */
     public function create()
     {
-        return view ('front.offer');
+        $categories = Category::lists('name','id');
+        $tags = Tag::lists('name','id');
+
+        return view ('front.offer', compact('categories', 'tags'));
     }
 
     /**
@@ -37,7 +42,7 @@ class AperoFrontController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $apero= Apero::create($request->all());
 
         if (!empty($request->input('tags')))
@@ -47,7 +52,7 @@ class AperoFrontController extends Controller
         $apero->tags()->attach($request-> input('tags'));
 
 
-        return redirect('/')->with(['message'=>'votre apero a bien été ajouté. Nous vous tiendrons informé de sa publication']);
+        return redirect('')->with(['message'=>'votre apero a bien été ajouté. Nous vous tiendrons informé de sa publication']);
 
     }
 
@@ -70,7 +75,7 @@ class AperoFrontController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

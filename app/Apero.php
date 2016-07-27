@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apero extends Model
 {
-    protected $fillable= ['title', 'content', 'abstract', 'date'];
+    protected $fillable= ['title', 'content', 'abstract', 'date','status'];
+    
     public function category()
     {
         return $this->belongsTo('App\Category');
