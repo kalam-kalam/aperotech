@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\File;
 
 class AperoAdminController extends Controller
 {
@@ -34,6 +35,8 @@ class AperoAdminController extends Controller
     {
         $categories = Category::lists('name','id');
         $tags = Tag::lists('name','id');
+
+
         return view('admin.create', compact('categories', 'tags'));
     }
 
@@ -43,17 +46,30 @@ class AperoAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\FormRequest $request)
     {
-
         $apero= Apero::create($request->all());
+
+
 
         if (!empty($request->input('tags')))
         {
             $apero->tags()->attach($request->input('tags'));
         }
-        $apero->tags()->attach($request-> input('tags'));
-        
+
+        if (!is_null($request->media)) {
+
+            $im = $request->media;
+            $ext = $im->getClientOriginalExtension();
+
+            $fileName = md5(uniqid(rand(), true)) . ".$ext";
+            $im->move(env('UPLOADS'), $fileName);
+
+            $apero->uri = $fileName;
+
+            $apero->save();
+        }
+
 
         return back()->with(['message'=>'votre post a bien été ajouté']);
 
@@ -98,10 +114,9 @@ class AperoAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\FormRequest $request, $id)
     {
         $apero = Apero::find($id);
-
         $apero->update($request->all());
 
         if(!empty($request->tags))
@@ -112,6 +127,34 @@ class AperoAdminController extends Controller
         else
         {
             $apero->tags()->detach();
+        }
+
+        if (!is_null($request->delete_media) || !is_null($request->media)) {
+
+
+                $fileName = public_path('assets/images/' . $apero->uri);
+                if (File::exists($fileName)) {
+                    File::delete($fileName);
+                }
+                $apero->uri = null;
+                $apero->save();
+
+
+            if (!is_null($request->media)) {
+                $im = $request->media;
+                $ext = $im->getClientOriginalExtension();
+
+                $fileName = md5(uniqid(rand(), true)) . ".$ext";
+                $im->move(env('UPLOADS'), $fileName);
+
+                $apero->uri = $fileName;
+
+                $apero->save();
+
+            }
+
+                
+
         }
 
 
