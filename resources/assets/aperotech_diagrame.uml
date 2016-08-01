@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>4bc1131a-a3b3-454b-be27-a683cfdf2df6</OriginalElement>
+  <nodes>
+    <node x="254.0" y="301.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.aperos</node>
+    <node x="0.0" y="765.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.password_resets</node>
+    <node x="0.0" y="389.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.tags</node>
+    <node x="162.0" y="55.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.categories</node>
+    <node x="436.0" y="0.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.users</node>
+    <node x="258.0" y="765.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.migrations</node>
+    <node x="164.0" y="646.0">4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.apero_tag</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.apero_tag" target="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.tags">
+      <point x="-60.0" y="-37.0" />
+      <point x="224.0" y="621.0" />
+      <point x="117.0" y="621.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.apero_tag" target="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.aperos">
+      <point x="60.0" y="-37.0" />
+      <point x="344.0" y="621.0" />
+      <point x="451.0" y="621.0" />
+      <point x="0.0" y="147.5" />
+    </edge>
+    <edge source="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.aperos" target="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.users">
+      <point x="98.5" y="-147.5" />
+      <point x="549.5" y="276.0" />
+      <point x="613.0" y="276.0" />
+      <point x="0.0" y="125.5" />
+    </edge>
+    <edge source="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.aperos" target="4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.categories">
+      <point x="-98.5" y="-147.5" />
+      <point x="352.5" y="276.0" />
+      <point x="289.0" y="276.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.601589103291714" x="395.0" y="430.5" />
+  <SelectedNodes>
+    <node>4bc1131a-a3b3-454b-be27-a683cfdf2df6.TABLE:db_aperotech.apero_tag</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+
