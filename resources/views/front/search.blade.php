@@ -1,9 +1,13 @@
 @extends('layout.master')
 @section('content')
+    {!!$aperos->links()!!}
     <h4>Entrez un mot clé</h4>
 
-    <form method="get" action="{{url('search')}}" class="search_bar">
-    <input type="search" placeholder="Entrez un mot-clef" name="the_search">
+    <form method="get" action="{{url('search')}}" class="navbar-form navbar" role="search">
+        <div class="form-group">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <input type="search" placeholder="Entrez un mot-clef" name="the_search" class="form-control">
+        </div>
     </form>
 
 
@@ -15,5 +19,7 @@
             <p>{{$apero->abstract}}</p>
         @endforeach
     @endif
+
+    {!!$aperos->links()!!}
 
 @endsection
