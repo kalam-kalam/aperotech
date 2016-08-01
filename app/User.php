@@ -28,5 +28,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Apero');
     }
+    
+    public function isVistor()
+    {
+        return in_array($this->role, 'visitor', 'admin');
+    }
 
 }

@@ -15,7 +15,7 @@ class LoginController extends Controller
         if($request->isMethod('post'))
         {
 
-            $this->validate($request, [
+             $this->validate($request, [
                 'username' => 'required',
                 'password' => 'required'
             ]);
@@ -24,11 +24,11 @@ class LoginController extends Controller
             $credentials = $request->only('username', 'password');
 
             if (Auth::attempt($credentials))
-            {
-                return redirect('admin/apero');
+            { 
+                return redirect('admin/apero')->with(['message'=>'success']);
             }else{
 
-                return back();
+                return back()->withInput($request->only('username'));
 
             }
         }

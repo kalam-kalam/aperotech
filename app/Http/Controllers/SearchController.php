@@ -22,8 +22,9 @@ class SearchController extends Controller
         $query = $request->input('the_search','');
         
         $aperos = DB::table('aperos')->where('title', 'LIKE', '%' . $query . '%')->paginate(5);
+        
 
-        return view('front.search', compact('aperos', 'query'));
+        return view('front.search', compact('aperos', 'query', 'tags'));
 
     }
 

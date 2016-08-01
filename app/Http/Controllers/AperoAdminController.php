@@ -6,10 +6,12 @@ use App\Apero;
 use App\Category;
 use App\Tag;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 
 class AperoAdminController extends Controller
 {
@@ -20,7 +22,7 @@ class AperoAdminController extends Controller
      */
     public function index()
     {
-        $aperos = Apero::paginate(5);
+        $aperos = Apero::orderBy('date')->paginate(5);
         $users = User::all();
 
         return view('admin.index', compact('aperos', 'users'));
@@ -153,9 +155,11 @@ class AperoAdminController extends Controller
 
             }
 
+
                 
 
         }
+        return Redirect::to('admin/apero')->with('message', 'apero modifié avec succès');
 
 
     }
