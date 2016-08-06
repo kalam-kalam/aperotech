@@ -14,7 +14,7 @@
 
     @if(!empty($apero->uri))
         <div class="thumbnail">
-            <img src="{{url('assets', ['images', $apero->uri])}}" alt="" >
+            <img src="{{url('assets', ['images', $apero->uri])}}" alt="">
         </div>
     @endif
 

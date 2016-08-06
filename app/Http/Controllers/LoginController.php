@@ -12,10 +12,9 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        if($request->isMethod('post'))
-        {
+        if ($request->isMethod('post')) {
 
-             $this->validate($request, [
+            $this->validate($request, [
                 'username' => 'required',
                 'password' => 'required'
             ]);
@@ -23,10 +22,9 @@ class LoginController extends Controller
 
             $credentials = $request->only('username', 'password');
 
-            if (Auth::attempt($credentials))
-            { 
-                return redirect('admin/apero')->with(['message'=>'success']);
-            }else{
+            if (Auth::attempt($credentials)) {
+                return redirect('admin/apero')->with(['message' => 'success']);
+            } else {
 
                 return back()->withInput($request->only('username'));
 
@@ -39,7 +37,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect('/')->with(['message'=>'success logout']);
+        return redirect('/')->with(['message' => 'success logout']);
     }
 }
 

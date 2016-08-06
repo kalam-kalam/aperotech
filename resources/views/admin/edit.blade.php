@@ -33,9 +33,9 @@
             <select name="category_id">
                 @foreach($categories as $id => $name)
                     <option
-                        value="{{$id}}"
-                    {{(!is_null($apero->category) && ($apero->category->id == $id))? 'selected': '' }}>
-                    {{$name}}
+                            value="{{$id}}"
+                            {{(!is_null($apero->category) && ($apero->category->id == $id))? 'selected': '' }}>
+                        {{$name}}
                     </option>
 
                 @endforeach
@@ -62,21 +62,21 @@
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
 
             @foreach($tags as $id =>$name)
-            <label class="checkbox-inline" for="{{$id}}"> {{$name}}</label>
-            <input
+                <label class="checkbox-inline" for="{{$id}}"> {{$name}}</label>
+                <input
 
-                    @foreach($apero->tags as $tag)
-                    {{$tag->id==$id? 'checked' : ''}}
+                        @foreach($apero->tags as $tag)
+                        {{$tag->id==$id? 'checked' : ''}}
 
-                    @endforeach
-                    id="{{$id}}" type="checkbox" name="tags[]" value="{{$id}}">
-                @endforeach
+                        @endforeach
+                        id="{{$id}}" type="checkbox" name="tags[]" value="{{$id}}">
+            @endforeach
 
         </p>
 
         @if($apero->uri)
 
-            <img src="{{url('assets', ['images', $apero->uri])}}" alt="{{$apero->title}}" >
+            <img src="{{url('assets', ['images', $apero->uri])}}" alt="{{$apero->title}}">
             <input type="checkbox" name="delete_media"> Supprimer <br>
             Modifier l'image <input type="file" name="media">
 

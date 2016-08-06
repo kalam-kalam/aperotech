@@ -29,6 +29,8 @@ class AperoTableSeeder extends Seeder
             $apero->tags()->attach([$tagsId[0], $tagsId[1]]);
 
             $apero->uri = $uri = str_random(12).'.jpg';
+            $apero->user_id=rand(1,3);
+            $apero->category_id=rand(1,3);
             $apero->save();
 
             $fileName = file_get_contents('http://lorempicsum.com/rio/400/200/'.rand(1,9));

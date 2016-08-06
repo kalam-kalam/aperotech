@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apero;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,88 +12,34 @@ use Illuminate\Support\Facades\Input;
 
 class SearchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
 
-        $query = $request->input('the_search','');
-        
-        $aperos = DB::table('aperos')->where('title', 'LIKE', '%' . $query . '%')->paginate(5);
-        
+            $query = $request->input('the_search', '');
 
-        return view('front.search', compact('aperos', 'query', 'tags'));
+            $aperos = Apero::where('title', 'LIKE', '%' . $query . '%')->paginate(5);
+
+            $tags = Tag::where('name','LIKE', '%'.$query . '%')->get();
+
+            return view('front.search', compact('aperos', 'query', 'tags'));
+
 
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    {}
     public function store(Request $request)
-    {
+    {}
 
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
-    {
-        //
-    }
+    {}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
-    {
-        //
-    }
+    {}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
-    {
-        //
-    }
+    {}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
-    {
-        //
-    }
+    {}
 }

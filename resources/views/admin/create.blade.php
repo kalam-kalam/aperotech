@@ -1,7 +1,7 @@
 @extends('layout.admin')
 @section('content')
 
-    <form  class="" action="{{route('admin.apero.store')}}" method="POST" enctype="multipart/form-data">
+    <form class="" action="{{route('admin.apero.store')}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
 
         <p>
@@ -57,33 +57,33 @@
         <p>
             <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
 
-                @forelse($tags as $id =>$name)
+            @forelse($tags as $id =>$name)
 
-                        <label for="{{$id}}" class="checkbox-inline"> {{$name}}</label>
+                <label for="{{$id}}" class="checkbox-inline"> {{$name}}</label>
 
 
-                        <input type="checkbox" name="tags[]" value={{$id}}>
+                <input type="checkbox" name="tags[]" value={{$id}}>
 
-                 @empty
-                 aucun mot clé
-                @endforelse
+            @empty
+                aucun mot clé
+            @endforelse
 
 
         </p>
 
         <p>
             <label for="image">Image:</label>
-        <input type="file" name="media"><br>
-        @if($errors->has('media'))
-            <span class="admin_error">
+            <input type="file" name="media"><br>
+            @if($errors->has('media'))
+                <span class="admin_error">
                {{$errors->first('media')}}
             </span>
-        @endif
+            @endif
         </p>
 
         <p>
-        <input type="radio" name="status" value="published">Publié
-        <input checked type="radio" name="status" value="unpublished">Dépublié
+            <input type="radio" name="status" value="published">Publié
+            <input checked type="radio" name="status" value="unpublished">Dépublié
         </p>
 
 
@@ -100,4 +100,4 @@
 
         <input type="submit" value="Ajouter">
     </form>
-    @endsection
+@endsection

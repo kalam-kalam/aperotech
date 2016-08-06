@@ -25,17 +25,13 @@ class FrontController extends Controller
 
         return view('front.index', compact('aperos', 'today', 'categories'));
     }
-    
+
 
     public function showApero($id)
     {
         $apero = Apero::find($id);
 
-        return view ('front.show', compact('apero'));
+        return view('front.show', compact('apero'));
     }
-
-
-
-    
 
 }
